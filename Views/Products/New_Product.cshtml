@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Sklad.Models.Product
+@{
+}
+<form method="POST" action="/Products/Edit">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="name" value="@(Model != null ? Model.name : "")" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Category</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="category" value="@(Model != null ? Model.category : "")" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Producer</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="producer" value="@(Model != null ? Model.producer : "")" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Price</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="price" value="@(Model != null ? Model.price : "")" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Count</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="count" value="@(Model != null ? Model.count : "")" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Supplier</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="supplier" value="@(Model != null ? Model.supplier : "")" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Measurement_unit</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="measurement_unit" value="@(Model != null ? Model.measurement_unit : "")" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Price_unit</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="price_unit" value="@(Model != null ? Model.price_unit : "")" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class=" offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div>
+            <div class="col-sm-3 d-grid">
+                <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+            </div>
+        </div>
+    </div>
+</form>

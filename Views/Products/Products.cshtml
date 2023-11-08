@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Sklad.Models.Products_list
+@{
+}
+<br />
+<h2> List of Products</h2>
+<a class='btn btn-primary btn-sm' href="/Products/New_Product">New Product</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Producer</th>
+            <th>Price</th>
+            <th>Count</th>
+            <th>Supplier</th>
+            <th>Measurement_unit</th>
+            <th>Price_unit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listProducts)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.name</td>
+                <td>@item.category</td>
+                <td>@item.producer</td>
+                <td>@item.price</td>
+                <td>@item.count</td>
+                <td>@item.supplier</td>
+                <td>@item.measurement_unit</td>
+                <td>@item.price_unit</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Products/New_Product?id=@item.id">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="/Products/Delete?id=@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
