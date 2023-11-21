@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sklad.Models;
 using System.Data.SqlClient;
+using Newtonsoft.Json;
+
 
 namespace Sklad.Controllers
 {
@@ -41,7 +43,19 @@ namespace Sklad.Controllers
     public class DataBase
     {
         public static List<Product> listProducts = new List<Product>();
-        private static string connectionString = "Data Source=localhost;Initial Catalog=sklad;Integrated Security=True;";
+        private static readonly string connectionString;
+        static DataBase()
+        {
+            try
+            {
+                connectionString = File.ReadAllText("appsettings.secrets.json").Trim();
+                System.Diagnostics.Debug.WriteLine(connectionString);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading configuration: {ex.Message}");
+            }
+        }
         public static List<Product> get(int id)
         {
             listProducts.Clear();
@@ -98,8 +112,7 @@ namespace Sklad.Controllers
                         command.Parameters.AddWithValue("@name", model.name);
                         command.Parameters.AddWithValue("@category", model.category);
                         command.Parameters.AddWithValue("@producer", model.producer);
-
-command.Parameters.AddWithValue("@price", model.price);
+                        command.Parameters.AddWithValue("@price", model.price);
                         command.Parameters.AddWithValue("@count", model.count);
                         command.Parameters.AddWithValue("@supplier", model.supplier);
                         command.Parameters.AddWithValue("@measurement_unit", model.measurement_unit);
