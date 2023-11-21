@@ -1,12 +1,28 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@model Sklad.Models.Products_list
+@model List<Sklad.Models.Product>
 @{
 }
 <br />
 <h2> List of Products</h2>
-<a class='btn btn-primary btn-sm' href="/Products/New_Product">New Product</a>
+<a class='btn btn-primary btn-sm' style="background-color:#0563af !important; padding: 10px;border-radius: 7px;     margin-top: 10px;" href="/Products/New_Product"><strong>Add new product</strong></a>
+
+<a href="/Products/Grid_Products" style="margin-left: 800px;margin-top: 17px;">
+    <img width="90" src="~/icon.png">
+</a>
+<div class="box">
+    <select name="selection">
+        <option value="ID" selected>ID</option>
+        <option value="Name">Name</option>
+        <option value="Price up">Price (from cheap to expensive)</option>
+        <option value="Price down">Price (from expensive to cheap)</option>
+        <option value="Count">Count</option>
+    </select>
+</div>
+
+
+
 <table class="table">
     <thead>
         <tr>
@@ -17,12 +33,13 @@
             <th>Price</th>
             <th>Count</th>
             <th>Supplier</th>
-            <th>Measurement_unit</th>
-            <th>Price_unit</th>
+            <th>Measurement Unit</th>
+            <th>Price Unit</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.listProducts)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>@item.id</td>
@@ -34,9 +51,9 @@
                 <td>@item.supplier</td>
                 <td>@item.measurement_unit</td>
                 <td>@item.price_unit</td>
-                <td>
-                    <a class="btn btn-primary btn-sm" href="/Products/New_Product?id=@item.id">Edit</a>
-                    <a class="btn btn-danger btn-sm" href="/Products/Delete?id=@item.id">Delete</a>
+                <td style="text-align: center;">
+                    <a class="btn btn-primary btn-sm" href="/Products/New_Product?id=@item.id"><i class="fas fa-pencil-alt"></i></a>
+                    <a class="btn btn-danger btn-sm delete-btn" data-id="@item.id" href="#" style="margin-right: -10px;    margin-left: 10px;"><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         }

@@ -1,0 +1,62 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<Sklad.Models.Product>
+@{
+}
+<br />
+<h2> List of Products</h2>
+<a class='btn btn-primary btn-sm' style="background-color:#0563af !important; padding: 10px;border-radius: 7px;     margin-top: 10px;" href="/Products/New_Product"><strong>Add new product</strong></a>
+
+<a href="/Products/Products" style="margin-left: 800px;margin-top: 17px;">
+    <img width="90" src="~/icon2.png">
+</a>
+
+
+
+<div class="box">
+    <select name="selection">
+        <option value="ID" selected>ID</option>
+        <option value="Name">Name</option>
+        <option value="Price up">Price (from cheap to expensive)</option>
+        <option value="Price down">Price (from expensive to cheap)</option>
+        <option value="Count">Count</option>
+    </select>
+</div>
+
+
+<div class="grid">
+   
+
+
+            @foreach (var item in Model)
+            {
+
+        <div class="product_block" data-id="@item.id">
+            <a class="btn btn-primary btn-sm" href="/Products/New_Product?id=@item.id" style="text-align: right;"><i class="fas fa-pencil-alt"></i></a>
+            <br />
+            @item.name
+                    <br/>
+                    
+                    @item.price
+            <br />
+                    @item.count
+            <br />
+                   
+                    
+                    @item.price_unit
+            <br />
+                    @{
+                        decimal price = Convert.ToDecimal(item.price);
+                        decimal count = Convert.ToDecimal(item.count);
+                    }
+
+
+
+            <a class="btn btn-danger btn-sm delete-btn2" data-id="@item.id" href="#" style="text-align: right;"><i class="fas fa-trash-alt"></i></a>
+        </div>
+    }
+        
+       
+ 
+</div>
