@@ -54,9 +54,10 @@ color:white;
 .table2 {
     background-color: #252525 !important;
     border-radius: 20px;
-    padding: 20px;
+    padding: 15px;
     margin-top: 40px;
-    width: 1296px;
+    margin-left:7px;
+    width: 1280px;
 }
 
 
@@ -158,8 +159,8 @@ form {
 }
 
 .grid {
-    margin-top:30px;
-    margin-left:60px;
+    margin-top: 30px;
+    margin-left: 60px;
     display: flex;
     width: 100%;
     flex-wrap: wrap;
