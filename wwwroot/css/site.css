@@ -53,9 +53,10 @@ color:white;
 
 .table2 {
     background-color: #252525 !important;
-    border-radius:20px;
-    padding:20px;
-    margin-top:40px;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 40px;
+    width: 1296px;
 }
 
 
@@ -73,7 +74,7 @@ color:white;
         background-color: #0563af;
         color: white;
         padding: 12px;
-        width: 250px;
+        width: 240px;
         border: none;
         font-size: 14px;
         box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
