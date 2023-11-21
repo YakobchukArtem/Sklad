@@ -6,23 +6,34 @@
 }
 <br />
 <h2> List of Products</h2>
-<a class='btn btn-primary btn-sm' style="background-color:#0563af !important; padding: 10px;border-radius: 7px;     margin-top: 10px;" href="/Products/New_Product"><strong>Add new product</strong></a>
-
-<a href="/Products/Products" style="margin-left: 800px;margin-top: 17px;">
-    <img width="90" src="~/icon2.png">
-</a>
 
 
 
-<div class="box">
-    <select name="selection">
-        <option value="ID" selected>ID</option>
-        <option value="Name">Name</option>
-        <option value="Price up">Price (from cheap to expensive)</option>
-        <option value="Price down">Price (from expensive to cheap)</option>
-        <option value="Count">Count</option>
-    </select>
+
+<div class="topblock">
+    <a class='btn btn-primary btn-sm' style="background-color:#0563af !important; padding: 10px;border-radius: 7px;     margin-top: 10px;" href="/Products/New_Product"><strong>Add new product</strong></a>
+
+
+    <div class="topblock2">
+        <a href="/Products/Products">
+            <img width="90" src="~/icon2.png">
+        </a>
+        <div class="box">
+            <select name="selection">
+                <option value="ID" selected>ID</option>
+                <option value="Name">Name</option>
+                <option value="Price up">Price (from cheap to expensive)</option>
+                <option value="Price down">Price (from expensive to cheap)</option>
+                <option value="Count">Count</option>
+            </select>
+        </div>
+    </div>
 </div>
+
+
+
+
+
 
 
 <div class="grid">

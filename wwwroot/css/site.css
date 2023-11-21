@@ -61,9 +61,7 @@ color:white;
 
 
 .box {
-    position:absolute;
-    top: 147px;
-    left: 70.5%;
+ 
 
 }
 
@@ -84,21 +82,7 @@ color:white;
         outline: none;
     }
 
-    .box::before {
-        content: "\f13a";
-        font-family: FontAwesome;
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 20%;
-        height: 100%;
-        text-align: center;
-        font-size: 28px;
-        line-height: 45px;
-        color: rgba(255, 255, 255, 0.5);
-        background-color: rgba(255, 255, 255, 0.1);
-        pointer-events: none;
-    }
+
 
     .box:hover::before {
         color: rgba(255, 255, 255, 0.6);
@@ -176,7 +160,21 @@ form {
     margin-top:30px;
     margin-left:60px;
     display: flex;
-    width: 1276px;
+    width: 100%;
     flex-wrap: wrap;
 
+}
+
+
+
+.topblock {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.topblock2 {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 350px;
 }
