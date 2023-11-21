@@ -1,14 +1,26 @@
 ﻿$(document).ready(function () {
 
+    var activeBlock = null;
+
     $(".product_block").click(function (e) {
-        e.preventDefault();
-        var blockId = $(this).data("id");
+
+
         var currentWidth = $(this).width();
         console.log(currentWidth)
-        if (currentWidth === 710) {  
-            $(this).animate({ width: '350px' }, 300);
-        } else {
-            $(this).animate({ width: '750px' }, 300);
+        console.log(activeBlock)
+
+        if (currentWidth === 510) {
+            $(this).animate({ width: '290px' }, 300);
+            activeBlock = null;
+        } else if (activeBlock === null) {
+            activeBlock = $(this);
+            $(this).animate({ width: '550px' }, 300);
+        }
+        else {
+            activeBlock.animate({ width: '290px' }, 300);
+            $(this).animate({ width: '550px' }, 300);
+            activeBlock = $(this);
+            
         }
     });
 
