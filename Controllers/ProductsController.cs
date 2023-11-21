@@ -10,10 +10,13 @@ namespace Sklad.Controllers
     {
         public IActionResult New_Product(int id)
         {
+            DataBase.current_id= id;
             Product product = new Product();
             if (id > 0)
             {
+                DataBase.updateflag = true;
                 product = DataBase.get(id)[0];
+
             }
             return View(product);
         }
@@ -30,9 +33,17 @@ namespace Sklad.Controllers
         [HttpPost]
         public IActionResult Edit(Product model)
         {
-            DataBase.add(model);
-            return View("~/Views/Products/Products.cshtml", DataBase.get(0));
-        }
+            if (DataBase.updateflag)
+            {
+                DataBase.update(DataBase.current_id, model);
+                DataBase.updateflag =false;
+            }
+            else
+            {
+                DataBase.add(model);
+            }
+                return View("~/Views/Products/Products.cshtml", DataBase.get(0));
+            }
         public IActionResult Delete(int id)
         {
             DataBase.delete(id);
@@ -44,12 +55,13 @@ namespace Sklad.Controllers
     {
         public static List<Product> listProducts = new List<Product>();
         private static readonly string connectionString;
+        public static bool updateflag = false;
+        public static int current_id { get; set; }
         static DataBase()
         {
             try
             {
                 connectionString = File.ReadAllText("appsettings.secrets.json").Trim();
-                System.Diagnostics.Debug.WriteLine(connectionString);
             }
             catch (Exception ex)
             {
@@ -147,5 +159,45 @@ namespace Sklad.Controllers
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
+        public static void update(int id, Product updatedModel)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    String sql = "UPDATE Products SET " +
+                        "name = @name, " +
+                        "category = @category, " +
+                        "producer = @producer, " +
+                        "price = @price, " +
+                        "count = @count, " +
+                        "supplier = @supplier, " +
+                        "measurement_unit = @measurement_unit, " +
+                        "price_unit = @price_unit " +
+                        "WHERE id = @id;";
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@name", updatedModel.name);
+                        command.Parameters.AddWithValue("@category", updatedModel.category);
+                        command.Parameters.AddWithValue("@producer", updatedModel.producer);
+                        command.Parameters.AddWithValue("@price", updatedModel.price);
+                        command.Parameters.AddWithValue("@count", updatedModel.count);
+                        command.Parameters.AddWithValue("@supplier", updatedModel.supplier);
+                        command.Parameters.AddWithValue("@measurement_unit", updatedModel.measurement_unit);
+                        command.Parameters.AddWithValue("@price_unit", updatedModel.price_unit);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
+
     }
 }
