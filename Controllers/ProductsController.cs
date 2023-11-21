@@ -2,6 +2,7 @@
 using Sklad.Models;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
+using System.Reflection.Metadata;
 
 
 namespace Sklad.Controllers
@@ -23,7 +24,7 @@ namespace Sklad.Controllers
         [HttpGet]
         public IActionResult Products()
         {
-            return View("~/Views/Products/Products.cshtml", DataBase.get(0));
+            return View("~/Views/Products/Products.cshtml", DataBase.get(0, "count"));
         }
         [HttpGet]
         public IActionResult Grid_Products()
@@ -68,14 +69,16 @@ namespace Sklad.Controllers
                 Console.WriteLine($"Error loading configuration: {ex.Message}");
             }
         }
-        public static List<Product> get(int id)
+        public static List<Product> get(int id, string parameter = null, string desc=null)
         {
             listProducts.Clear();
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string sql = "SELECT * FROM Products";
+                    string sortOrder = (desc != null) ? "DESC" : "ASC";
+                    string orderByClause = (!string.IsNullOrEmpty(parameter)) ? $"ORDER BY {parameter} {sortOrder}" : "";
+                    string sql = $"SELECT * FROM Products {orderByClause}";
                     connection.Open();
                     if (id > 0)
                     {
@@ -198,6 +201,9 @@ namespace Sklad.Controllers
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
-
+        public static List<Product> Sort(string parameter, string desc = null)
+        {
+            return get(0,parameter,desc);
+        }
     }
 }
