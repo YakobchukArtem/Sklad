@@ -1,12 +1,24 @@
-﻿
+﻿$(document).ready(function () {
 
-$(document).ready(function () {
+    $(".product_block").click(function (e) {
+        e.preventDefault();
+        var blockId = $(this).data("id");
+        var currentWidth = $(this).width();
+        console.log(currentWidth)
+        if (currentWidth === 710) {  
+            $(this).animate({ width: '350px' }, 300);
+        } else {
+            $(this).animate({ width: '750px' }, 300);
+        }
+    });
+
+
 
 
     $(".delete-btn2").click(function (e) {
         e.preventDefault();
         var productId = $(this).data("id");
-        var rowToDelete = $('div[data-id="' + productId + '"]'); // Отримати батьківський рядок кнопки "delete"
+        var rowToDelete = $('div[data-id="' + productId + '"]'); 
 
 
         $.ajax({

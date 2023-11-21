@@ -62,11 +62,6 @@ color:white;
 
 
 
-.box {
- 
-
-}
-
     .box select {
         -webkit-appearance: none;
         -moz-appearance: none; 
@@ -75,7 +70,7 @@ color:white;
         background-color: #0563af;
         color: white;
         padding: 12px;
-        width: 240px;
+        width: 100px;
         border: none;
         font-size: 14px;
         box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
@@ -148,14 +143,29 @@ form {
     margin-left: 250px
 }
 
+tr {
+    transition: background-color 0.5s ease;
+}
+    tr:hover {
+        background-color: #2d2d2d;
+        
+    }
 
+a {
+    transition: opacity 0.5s ease;
+}
+
+a:hover {
+    opacity:0.8;
+}
 
 .product_block {
     background-color: #252525;
     width: 350px;
-    margin:20px;
-    padding:20px;
-    border-radius:10px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    transition: background-color 0.5s ease;
 }
 
 .grid {
@@ -167,7 +177,9 @@ form {
 
 }
 
-
+.product_block:hover {
+    background-color: #2d2d2d;
+}
 
 .topblock {
     width: 100%;
@@ -178,5 +190,45 @@ form {
 .topblock2 {
     display: inline-flex;
     justify-content: space-between;
-    width: 350px;
+    width: 210px;
+}
+
+
+
+
+
+
+
+
+
+.pname {
+
+}
+
+.pcateg{
+    display:none;
+}
+
+.ppro {
+    display: none;
+}
+
+.pprice{
+
+}
+
+.pcount{
+
+}
+
+.psup {
+    display: none;
+}
+
+.pme {
+    display: none;
+}
+
+.ppru {
+    display: none;
 }

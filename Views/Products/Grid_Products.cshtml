@@ -22,8 +22,8 @@
             <select name="selection">
                 <option value="ID" selected>ID</option>
                 <option value="Name">Name</option>
-                <option value="Price up">Price (from cheap to expensive)</option>
-                <option value="Price down">Price (from expensive to cheap)</option>
+                <option value="Price up">Price ↑</option>
+                <option value="Price down">Price ↓</option>
                 <option value="Count">Count</option>
             </select>
         </div>
@@ -46,16 +46,37 @@
         <div class="product_block" data-id="@item.id">
             <img width="250" src="~/product.png" style="margin: 10px 40px;">
            <br />
-            @item.name
-                    <br/>
-                    
-                    @item.price
             <br />
-                    @item.count
+            <strong>Name: </strong>
+            <span class="pname">
+                @item.name
+            </span>
             <br />
-                   
-                    
-                    @item.price_unit
+            <div class="pcateg">
+                @item.category
+            </div>
+            <div class="ppro">
+                @item.producer
+            </div>
+            <strong>Price: </strong>
+            <span class="pprice">
+                @item.price
+            </span>
+            <br />
+            <strong>Count: </strong>
+            <span class="pcount">
+                @item.count
+            </span>
+            <br />
+            <div class="psup">
+                @item.supplier
+            </div>
+            <div class="pme">
+                @item.measurement_unit
+            </div>
+            <div class="ppru">
+                @item.price_unit
+            </div>
             <br />
                     @{
                         decimal price = Convert.ToDecimal(item.price);
@@ -63,9 +84,9 @@
                     }
 
 
-            <a class="btn btn-primary btn-sm" href="/Products/New_Product?id=@item.id" style="text-align: right;"><i class="fas fa-pencil-alt"></i></a>
+            <a class="btn btn-primary btn-sm" data-id="@item.id" href="/Products/New_Product?id=@item.id"><i class="fas fa-pencil-alt"></i></a>
 
-            <a class="btn btn-danger btn-sm delete-btn2" data-id="@item.id" href="#" style="text-align: right;"><i class="fas fa-trash-alt"></i></a>
+            <a class="btn btn-danger btn-sm delete-btn2" data-id="@item.id" href="#"><i class="fas fa-trash-alt"></i></a>
         </div>
     }
         
