@@ -37,14 +37,14 @@ namespace Sklad.Controllers
             if (DataBase.updateflag)
             {
                 DataBase.update(DataBase.current_id, model);
-                DataBase.updateflag =false;
+                DataBase.updateflag = false;
             }
             else
             {
                 DataBase.add(model);
             }
-                return View("~/Views/Products/Products.cshtml", DataBase.get(0));
-            }
+            return RedirectToAction("Products", DataBase.get(0));
+        }
         public IActionResult Delete(int id)
         {
             DataBase.delete(id);
