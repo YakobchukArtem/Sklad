@@ -11,15 +11,8 @@
         public string supplier { get; set; }
         public string measurement_unit { get; set; }    
         public string price_unit { get; set; }
+        public byte[] image { get; set; }
 
     }
 
-    public class Products_list : Product
-    {
-        public Products_list(List<Product> products_List)
-        {
-            this.listProducts = products_List;
-        }
-        public List<Product> listProducts = new List<Product>();
-    }
 }

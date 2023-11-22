@@ -100,6 +100,11 @@ namespace Sklad.Controllers
                                 product.supplier = reader.GetString(6);
                                 product.measurement_unit = reader.GetString(7);
                                 product.price_unit = reader.GetString(8);
+                                if (!reader.IsDBNull(9))
+                                {
+                                    byte[] imageData = (byte[])reader[9];
+                                    product.image = imageData;
+                                }
                                 listProducts.Add(product);
                             }
                         }
@@ -120,8 +125,8 @@ namespace Sklad.Controllers
                 {
                     connection.Open();
                     String sql = "INSERT INTO Products" +
-                        "(name, category, producer, price, count, supplier, measurement_unit, price_unit) VALUES" +
-                     "(@name, @category, @producer, @price, @count, @supplier, @measurement_unit, @price_unit);";
+                        "(name, category, producer, price, count, supplier, measurement_unit, price_unit, product_image) VALUES" +
+                     "(@name, @category, @producer, @price, @count, @supplier, @measurement_unit, @price_unit, @product_image);";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@name", model.name);
@@ -132,6 +137,7 @@ namespace Sklad.Controllers
                         command.Parameters.AddWithValue("@supplier", model.supplier);
                         command.Parameters.AddWithValue("@measurement_unit", model.measurement_unit);
                         command.Parameters.AddWithValue("@price_unit", model.price_unit);
+                        command.Parameters.AddWithValue("@product_image", model.image);
                         command.ExecuteNonQuery();
                     }
                 }
@@ -177,7 +183,8 @@ namespace Sklad.Controllers
                         "count = @count, " +
                         "supplier = @supplier, " +
                         "measurement_unit = @measurement_unit, " +
-                        "price_unit = @price_unit " +
+                        "price_unit = @price_unit, " +
+                        "product_image = @product_image " +
                         "WHERE id = @id;";
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -191,7 +198,7 @@ namespace Sklad.Controllers
                         command.Parameters.AddWithValue("@supplier", updatedModel.supplier);
                         command.Parameters.AddWithValue("@measurement_unit", updatedModel.measurement_unit);
                         command.Parameters.AddWithValue("@price_unit", updatedModel.price_unit);
-
+                        command.Parameters.AddWithValue("@product_image", updatedModel.image);
                         command.ExecuteNonQuery();
                     }
                 }
