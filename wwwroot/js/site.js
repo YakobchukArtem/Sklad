@@ -62,19 +62,52 @@
         console.log(activeBlock)
 
         if (currentWidth === 510) {
-            $(this).animate({ width: '290px' }, 300);
-            activeBlock = null;
+            closeblock($(this))
+            
         } else if (activeBlock === null) {
-            activeBlock = $(this);
-            $(this).animate({ width: '550px' }, 300);
+            openblock($(this))
         }
         else {
+            activeBlock.find('.right_hide').animate({ opacity: 0 }, 200);
+            activeBlock.find('.right_hide').css('display', 'none');
             activeBlock.animate({ width: '290px' }, 300);
+            
+
+            
             $(this).animate({ width: '550px' }, 300);
+            $(this).find('.right_hide').css('display', 'block');
+            $(this).find('.right_hide').animate({ opacity: 1 }, 400);
+            
             activeBlock = $(this);
             
         }
     });
+
+
+
+    function closeblock(a) {
+
+        
+        a.find('.right_hide').animate({ opacity: 0 }, 200);
+        a.animate({ width: '290px' }, 300);
+        activeBlock = null;
+        a.find('.right_hide').css('display', 'none');
+    }
+
+
+    function openblock(b) {
+        activeBlock = b;
+        b.animate({ width: '550px' }, 300);
+        b.find('.right_hide').css('display', 'block');
+        b.find('.right_hide').animate({ opacity: 1 }, 400);
+    }
+
+
+
+
+
+
+
 
 
 

@@ -162,13 +162,12 @@ a:hover {
 .product_block {
     background-color: #252525;
     width: 290px;
-    width: 550px;
     margin: 20px;
     padding: 20px;
     border-radius: 10px;
     transition: background-color 0.5s ease;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: flex-end;
 }
 
@@ -199,40 +198,13 @@ a:hover {
 
 
 
-
-
-
-
-
-
-.pname {
-
-}
-
-.pcateg{
+.right_hide {
     display:none;
+    opacity: 0;
+    width: 260px;
 }
 
-.ppro {
-    display: none;
-}
-
-.pprice{
-
-}
-
-.pcount{
-
-}
-
-.psup {
-   
-}
-
-.pme {
-   
-}
-
-.ppru {
-
+.left_grid_info {
+    width: 250px;
+    margin-right:20px;
 }
