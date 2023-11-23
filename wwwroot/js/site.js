@@ -2,23 +2,87 @@
 
 
 
-
-
     $("#sortSelect").change(function () {
-        
-        var selectedParameter = $("#sortSelect").val();
+
+
+        var data = null;
+        var sel = $("#sortSelect").val();
+        var selectedParameter = null;
+        var anotherParameter = null;
+
+        if (sel === "ID") {
+            selectedParameter = sel;
+        } else if (sel === "Name") {
+            selectedParameter = sel;
+        } else if (sel === "Price1") {
+            selectedParameter = "Price";
+        } else if (sel === "Price2") {
+            selectedParameter = "Price";
+            anotherParameter = 'DESC';
+        } else if (sel === "Count1") {
+            selectedParameter = "Count";
+        } else if (sel === "Count2") {
+            selectedParameter = "Count";
+            anotherParameter = 'DESC';
+        }
+
         $.ajax({
-            url: "/Products/Products", 
+            url: "/Products/Products",
             type: "GET",
-            data: { parameter: selectedParameter },
+            data: {
+                parameter: selectedParameter,
+                desc: anotherParameter
+            },
             success: function (data) {
                 $('body').html(data);
-                console.log("Success", data);
+             
             },
             error: function (error) {
-                console.log("Error", error);
-            }
             
+            }
+        });
+
+    });
+
+
+
+$("#sortSelect2").change(function () {
+
+        var data = null;
+        var sel = $("#sortSelect2").val();
+        var selectedParameter = null;
+        var anotherParameter = null;
+
+        if (sel === "ID") {
+            selectedParameter = sel;
+        } else if (sel === "Name") {
+            selectedParameter = sel;
+        } else if (sel === "Price1") {
+            selectedParameter = "Price";
+        } else if (sel === "Price2") {
+            selectedParameter = "Price";
+            anotherParameter = 'DESC';
+        } else if (sel === "Count1") {
+            selectedParameter = "Count";
+        } else if (sel === "Count2") {
+            selectedParameter = "Count";
+            anotherParameter = 'DESC';
+        }
+
+        $.ajax({
+            url: "/Products/Grid_Products",
+            type: "GET",
+            data: {
+                parameter: selectedParameter,
+                desc: anotherParameter
+            },
+            success: function (data) {
+                $('body').html(data);
+                console.log("Success");
+            },
+            error: function (error) {
+                console.log("Error");
+            }
         });
     });
 
