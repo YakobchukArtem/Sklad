@@ -4,6 +4,32 @@
 
 
 
+    $("#sortSelect").change(function () {
+        
+        var selectedParameter = $("#sortSelect").val();
+        $.ajax({
+            url: "/Products/Products", 
+            type: "GET",
+            data: { parameter: selectedParameter },
+            success: function (data) {
+                $('body').html(data);
+                console.log("Success", data);
+            },
+            error: function (error) {
+                console.log("Error", error);
+            }
+            
+        });
+    });
+
+
+
+
+
+
+
+
+
 
     $('#img1').on('change', function () {
         var fileInput = $(this)[0];

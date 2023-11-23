@@ -24,8 +24,10 @@ namespace Sklad.Controllers
         [HttpGet]
         public IActionResult Products()
         {
-            return View("~/Views/Products/Products.cshtml", DataBase.get(0, "count"));
+            return View("~/Views/Products/Products.cshtml", DataBase.get(0));
         }
+
+
         [HttpGet]
         public IActionResult Grid_Products()
         {
