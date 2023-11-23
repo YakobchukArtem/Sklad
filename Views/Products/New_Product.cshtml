@@ -49,7 +49,7 @@
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Supplier</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control form__field" name="supplier" value="@(Model != null ? Model.supplier : "")" />
+            <input type="text" class="form-control form__field" name="supplier" value="@(Model.supplier != null ? Model.supplier : "")" />
         </div>
     </div>
     <div class="row mb-3">
@@ -79,7 +79,7 @@
         <div class="col-sm-6" style="    display: -webkit-inline-box;">
             <input id="img1" type="file" class="form-control form__field" style="font-size:15px;padding-left: 25px;    width: 350px;" />
             <a class="btn btn-danger btn-sm delete-btn2" id="deleteimg" href="#" style=" display:none;"><i class="fas fa-trash-alt"></i></a>
-            <input id="img2" type="text" style="display:none;" class="form-control form__field" name="image" value="@(Model != null ? Model.image : "")" />
+            <input id="img2" type="text" style="display:none;" class="form-control form__field" name="image" value="@(Model.image != null ? Convert.ToBase64String(Model.image) : "")" />
         </div>
     </div>
     <div class="row mb-3">
