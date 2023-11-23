@@ -137,7 +137,8 @@ namespace Sklad.Controllers
                         command.Parameters.AddWithValue("@supplier", model.supplier);
                         command.Parameters.AddWithValue("@measurement_unit", model.measurement_unit);
                         command.Parameters.AddWithValue("@price_unit", model.price_unit);
-                        command.Parameters.Add("@product_image", SqlDbType.VarBinary, -1).Value = model.image;  // Використовуйте SqlDbType.VarBinary і -1 для max
+                        command.Parameters.Add("@product_image", SqlDbType.VarBinary, -1).Value = model.image != null && model.image.Length > 0 ? model.image : DBNull.Value;
+                        // Використовуйте SqlDbType.VarBinary і -1 для max
                         command.ExecuteNonQuery();
                     }
 
