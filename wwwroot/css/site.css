@@ -37,8 +37,10 @@ body {
     color: white !important;
 }
 
-table th,td{
-color:white;
+table th, td {
+    color: white;
+    max-width: 150px;
+    overflow-wrap: break-word;
 }
 
 .border-bottom {
@@ -72,7 +74,7 @@ color:white;
         padding: 12px;
         width: 100px;
         border: none;
-        font-size: 14px;
+        font-size: 15px;
         box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
         -webkit-appearance: button;
         appearance: button;
@@ -168,7 +170,7 @@ a:hover {
     transition: background-color 0.5s ease;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: flex-start;
 }
 
 .grid {

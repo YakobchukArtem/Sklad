@@ -54,9 +54,10 @@
                     }
                     else
                     {
-                        <img width="200" src="~/product.png" alt="Default Product Image" style="margin: 10px 25px;">
+                        <img width="200" height="200" src="~/product.png" alt="Default Product Image" style="margin: 10px 25px;">
                     }
-                
+                    
+                    <div>
                     <br />  
                     <strong>Name: </strong>
                     <span class="pname">
@@ -73,11 +74,12 @@
                         @item.price
                     </span>
                     <br />
+                
                 <div class="bottom_grid_info">
                     <a class="btn btn-primary btn-sm" data-id="@item.id" href="/Products/New_Product?id=@item.id"><i class="fas fa-pencil-alt"></i></a>
                     <a class="btn btn-danger btn-sm delete-btn2" data-id="@item.id" href="#"><i class="fas fa-trash-alt"></i></a>
                 </div>
-          
+                </div>
             </div>
 
 
