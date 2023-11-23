@@ -35,10 +35,23 @@
         hideDeleteButton();
     });
 
-    // Функція для показу кнопки deleteimg
-    function showDeleteButton() {
-        $('#deleteimg').css('display', 'block');
+
+    function checkImg2() {
+        var img2Value = $('#img2').val();
+        if (img2Value !== '') {
+            $('#deleteimg').css('display', 'block');
+        } else {
+            $('#deleteimg').css('display', 'none');
+        }
     }
+
+    // Викликати функцію при завантаженні сторінки
+    checkImg2();
+
+    // Викликати функцію при зміні поля #img2
+    $('#img2').on('input', function () {
+        checkImg2();
+    });
 
     // Функція для ховання кнопки deleteimg
     function hideDeleteButton() {
