@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
 using System.Reflection.Metadata;
+using System.Data.Common;
 
 
 namespace Sklad.Controllers
@@ -22,16 +23,16 @@ namespace Sklad.Controllers
             return View(product);
         }
         [HttpGet]
-        public IActionResult Products()
+        public IActionResult Products(string parameter="id", string desc = null)
         {
-            return View("~/Views/Products/Products.cshtml", DataBase.get(0));
+            return View("~/Views/Products/Products.cshtml", DataBase.get(0, parameter, desc));
         }
 
 
         [HttpGet]
-        public IActionResult Grid_Products()
+        public IActionResult Grid_Products(string parameter = "id", string desc = null)
         {
-            return View("~/Views/Products/Grid_Products.cshtml", DataBase.get(0));
+            return View("~/Views/Products/Grid_Products.cshtml", DataBase.get(0, parameter, desc));
         }
         [HttpPost]
         public IActionResult Edit(Product model)
@@ -210,10 +211,6 @@ namespace Sklad.Controllers
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
-        }
-        public static List<Product> Sort(string parameter, string desc = null)
-        {
-            return get(0,parameter,desc);
         }
     }
 }
