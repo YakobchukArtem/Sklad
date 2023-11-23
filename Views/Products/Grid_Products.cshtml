@@ -22,9 +22,10 @@
             <select name="selection">
                 <option value="ID" selected>ID</option>
                 <option value="Name">Name</option>
-                <option value="Price up">Price ↑</option>
-                <option value="Price down">Price ↓</option>
-                <option value="Count">Count</option>
+                <option value="Price1">Price ↑</option>
+                <option value="Price2">Price ↓</option>
+                <option value="Count1">Count ↑</option>
+                <option value="Count2">Count ↓</option>
             </select>
         </div>
     </div>
@@ -44,49 +45,73 @@
             {
 
         <div class="product_block" data-id="@item.id">
-            <img width="200" src="~/product.png" style="margin: 10px 25px;">
-           <br />
-            <br />
-            <strong>Name: </strong>
-            <span class="pname">
-                @item.name
-            </span>
-            <br />
-            <div class="pcateg">
-                @item.category
+            <div class="left_grid_info">
+                    <img width="200" src="~/product.png" style="margin: 10px 25px;">
+                    <br />  
+                    <strong>Name: </strong>
+                    <span class="pname">
+                        @item.name
+                    </span>
+                    <br />
+                    <strong>Price: </strong>
+                    <span class="pprice">
+                        @item.price
+                    </span>
+                    <br />
+                    <strong>Count: </strong>
+                    <span class="pcount">
+                        @item.count
+                    </span>
+                    <br />
+                    
+          
             </div>
-            <div class="ppro">
-                @item.producer
+
+
+
+            <div class="bottom_grid_info" style="    display: flex;">
+                <a class="btn btn-primary btn-sm" data-id="@item.id" href="/Products/New_Product?id=@item.id"><i class="fas fa-pencil-alt"></i></a>
+                <a class="btn btn-danger btn-sm delete-btn2" data-id="@item.id" href="#"><i class="fas fa-trash-alt"></i></a>
             </div>
-            <strong>Price: </strong>
-            <span class="pprice">
-                @item.price
-            </span>
-            <br />
-            <strong>Count: </strong>
-            <span class="pcount">
-                @item.count
-            </span>
-            <br />
-            <div class="psup">
-                @item.supplier
+
+
+
+
+            <div class="right_grid_info">
+                    <strong>Category: </strong>
+                    <span class="pcateg">
+                        @item.category
+                    </span>
+                <br />
+                    <strong>Measurement Unit: </strong>
+                    <span class="pme">
+                        @item.measurement_unit
+                    </span>
+                <br />
+                    <strong>Price Unit: </strong>
+                    <span class="ppru">
+                        @item.price_unit
+                    </span>
+                <br />
+                    <strong>Producer: </strong>
+                    <span class="ppro">
+                        @item.producer
+                    </span>
+                <br />
+                    <strong>Supplier: </strong>
+                    <span class="psup">
+                        @item.supplier
+                    </span>
+                <br />
             </div>
-            <div class="pme">
-                @item.measurement_unit
-            </div>
-            <div class="ppru">
-                @item.price_unit
-            </div>
-            <br />
+
+
                     @{
                         decimal price = Convert.ToDecimal(item.price);
                         decimal count = Convert.ToDecimal(item.count);
                     }
 
-
-            <a class="btn btn-primary btn-sm" data-id="@item.id" href="/Products/New_Product?id=@item.id"><i class="fas fa-pencil-alt"></i></a>
-
-            <a class="btn btn-danger btn-sm delete-btn2" data-id="@item.id" href="#"><i class="fas fa-trash-alt"></i></a>
+            
         </div>
     }
         

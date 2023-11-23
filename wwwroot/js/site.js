@@ -1,5 +1,57 @@
 ﻿$(document).ready(function () {
 
+
+
+
+
+
+    $('#img1').on('change', function () {
+        var fileInput = $(this)[0];
+
+        if (fileInput.files.length > 0) {
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+               
+                var base64Data = reader.result.split(',')[1];
+
+                $('#deleteimg').css('display', 'block');
+                $('#img2').val(base64Data);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+
+
+
+    $('#deleteimg').on('click', function () {
+        // Очищаємо поля #img1 та #img2
+        $('#img1').val('');
+        $('#img2').val('');
+
+        // Ховаємо кнопку deleteimg
+        hideDeleteButton();
+    });
+
+    // Функція для показу кнопки deleteimg
+    function showDeleteButton() {
+        $('#deleteimg').css('display', 'block');
+    }
+
+    // Функція для ховання кнопки deleteimg
+    function hideDeleteButton() {
+        $('#deleteimg').css('display', 'none');
+    }
+
+
+
+
+
+
+
+
     var activeBlock = null;
 
     $(".product_block").click(function (e) {
