@@ -201,14 +201,16 @@ a:hover {
 
 
 .right_hide {
-    display:none;
+    display: none;
     opacity: 0;
-    width: 260px;
+    width: 235px;
+    overflow-wrap: break-word;
 }
 
 .left_grid_info {
+    overflow-wrap: break-word;
     width: 240px;
-    margin-right:40px;
+    margin-right: 40px;
 }
 
 
