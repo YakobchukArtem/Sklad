@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sklad.Models;
+using System.Data;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
 using System.Reflection.Metadata;
@@ -9,6 +10,17 @@ namespace Sklad.Controllers
 {
     public class ProductsController : Controller
     {
+        public IActionResult GetImage(int id)
+        {
+            var product = DataBase.get(id)[0];
+            if (product == null || product.image == null || product.image.Length == 0)
+            {
+                return NotFound();
+            }
+
+            return File(product.image, "image/png"); 
+        }
+
         public IActionResult New_Product(int id)
         {
             DataBase.current_id= id;
@@ -17,7 +29,6 @@ namespace Sklad.Controllers
             {
                 DataBase.updateflag = true;
                 product = DataBase.get(id)[0];
-
             }
             return View(product);
         }
@@ -125,8 +136,8 @@ namespace Sklad.Controllers
                 {
                     connection.Open();
                     String sql = "INSERT INTO Products" +
-                        "(name, category, producer, price, count, supplier, measurement_unit, price_unit, product_image) VALUES" +
-                     "(@name, @category, @producer, @price, @count, @supplier, @measurement_unit, @price_unit, @product_image);";
+             "(name, category, producer, price, count, supplier, measurement_unit, price_unit, product_image) VALUES" +
+             "(@name, @category, @producer, @price, @count, @supplier, @measurement_unit, @price_unit, @product_image);";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@name", model.name);
@@ -137,9 +148,10 @@ namespace Sklad.Controllers
                         command.Parameters.AddWithValue("@supplier", model.supplier);
                         command.Parameters.AddWithValue("@measurement_unit", model.measurement_unit);
                         command.Parameters.AddWithValue("@price_unit", model.price_unit);
-                        command.Parameters.AddWithValue("@product_image", model.image);
+                        command.Parameters.Add("@product_image", SqlDbType.VarBinary, -1).Value = model.image;  // Використовуйте SqlDbType.VarBinary і -1 для max
                         command.ExecuteNonQuery();
                     }
+
                 }
             }
             catch (Exception ex)

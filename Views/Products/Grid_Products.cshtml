@@ -37,15 +37,20 @@
 
 
 <div class="grid">
-   
 
 
-            @foreach (var item in Model)
-            {
+
+    @foreach (var item in Model)
+    {
 
         <div class="product_block" data-id="@item.id">
-            <img width="200" src="~/product.png" style="margin: 10px 25px;">
-           <br />
+
+
+        @if (item.image != null && item.image.Length > 0)
+        {
+          <img src="@Url.Action("ShowImage", "Products", new { id = 1 })" />
+        }
+            <br />
             <br />
             <strong>Name: </strong>
             <span class="pname">
@@ -78,10 +83,10 @@
                 @item.price_unit
             </div>
             <br />
-                    @{
-                        decimal price = Convert.ToDecimal(item.price);
-                        decimal count = Convert.ToDecimal(item.count);
-                    }
+            @{
+                decimal price = Convert.ToDecimal(item.price);
+                decimal count = Convert.ToDecimal(item.count);
+            }
 
 
             <a class="btn btn-primary btn-sm" data-id="@item.id" href="/Products/New_Product?id=@item.id"><i class="fas fa-pencil-alt"></i></a>
@@ -89,7 +94,7 @@
             <a class="btn btn-danger btn-sm delete-btn2" data-id="@item.id" href="#"><i class="fas fa-trash-alt"></i></a>
         </div>
     }
-        
-       
- 
+
+
+
 </div>

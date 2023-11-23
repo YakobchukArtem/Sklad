@@ -20,5 +20,6 @@ namespace Sklad
 
             return imageBytes;
         }
+
     }
 }
