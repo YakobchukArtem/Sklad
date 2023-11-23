@@ -207,6 +207,26 @@ a:hover {
 }
 
 .left_grid_info {
-    width: 250px;
-    margin-right:20px;
+    width: 240px;
+    margin-right:40px;
 }
+
+
+
+
+
+.image-container {
+    width: 230px;
+    height: 230px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    display: flex;
+}
+
+    .image-container img {
+        width: 100%; /* Картинка займе 100% ширини контейнера */
+        height: auto; /* Забезпечення пропорцій для висоти */
+        display: block; /* Вирівнювання картинки в середині блока */
+    }

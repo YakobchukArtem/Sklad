@@ -47,16 +47,16 @@
         <div class="product_block" data-id="@item.id">
             <div class="left_grid_info">
 
-               
+                <div class="image-container">
                     @if (item.image != null && item.image.Length > 0)
                     {
-                    <img width="200" src="data:image/jpg;base64,@Convert.ToBase64String(item.image)" alt="Product Image" style="margin: 10px 25px;">
+                    <img  src="data:image/jpg;base64,@Convert.ToBase64String(item.image)" alt="Product Image" style="margin: 10px 25px;">
                     }
                     else
                     {
-                        <img width="200" height="200" src="~/product.png" alt="Default Product Image" style="margin: 10px 25px;">
+                        <img  src="~/product.png" alt="Default Product Image" style="margin: 10px 25px;">
                     }
-                    
+                </div>
                     <div>
                     <br />  
                     <strong>Name: </strong>
