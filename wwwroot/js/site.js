@@ -53,24 +53,29 @@
 
 
     var activeBlock = null;
-
+    var activeBlock2 = null;
     $(".product_block").click(function (e) {
 
 
         var currentWidth = $(this).width();
-        console.log(currentWidth)
-        console.log(activeBlock)
+        
+        
 
         if (currentWidth === 510) {
             closeblock($(this))
             
+            
         } else if (activeBlock === null) {
             openblock($(this))
+            
         }
         else {
-            activeBlock.find('.right_hide').animate({ opacity: 0 }, 200);
-            activeBlock.find('.right_hide').css('display', 'none');
+            activeBlock.find('.right_hide').animate({ opacity: 0 }, 200);  
             activeBlock.animate({ width: '290px' }, 300);
+            activeBlock2 = activeBlock;
+            setTimeout(function () {
+                activeBlock2.find('.right_hide').css('display', 'none');
+        }, 200);
             
 
             
@@ -91,12 +96,16 @@
         a.find('.right_hide').animate({ opacity: 0 }, 200);
         a.animate({ width: '290px' }, 300);
         activeBlock = null;
-        a.find('.right_hide').css('display', 'none');
+        
+        setTimeout(function () {
+            a.find('.right_hide').css('display', 'none');
+        }, 300);
     }
 
 
     function openblock(b) {
         activeBlock = b;
+        
         b.animate({ width: '550px' }, 300);
         b.find('.right_hide').css('display', 'block');
         b.find('.right_hide').animate({ opacity: 1 }, 400);
