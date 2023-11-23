@@ -97,7 +97,7 @@ namespace Sklad.Controllers
                                 product.producer = reader.GetString(3);
                                 product.price = reader.GetDecimal(4);
                                 product.count = reader.GetInt32(5);
-                                product.supplier = reader.GetString(6);
+                                product.supplier = reader.IsDBNull(6) ? null : reader.GetString(6);
                                 product.measurement_unit = reader.GetString(7);
                                 product.price_unit = reader.GetString(8);
                                 if (!reader.IsDBNull(9))
@@ -134,11 +134,10 @@ namespace Sklad.Controllers
                         command.Parameters.AddWithValue("@producer", model.producer);
                         command.Parameters.AddWithValue("@price", model.price);
                         command.Parameters.AddWithValue("@count", model.count);
-                        command.Parameters.AddWithValue("@supplier", model.supplier);
+                        command.Parameters.AddWithValue("@supplier", string.IsNullOrEmpty(model.supplier) ? DBNull.Value : (object)model.supplier);
                         command.Parameters.AddWithValue("@measurement_unit", model.measurement_unit);
                         command.Parameters.AddWithValue("@price_unit", model.price_unit);
                         command.Parameters.Add("@product_image", SqlDbType.VarBinary, -1).Value = model.image != null && model.image.Length > 0 ? model.image : DBNull.Value;
-                        // Використовуйте SqlDbType.VarBinary і -1 для max
                         command.ExecuteNonQuery();
                     }
 
