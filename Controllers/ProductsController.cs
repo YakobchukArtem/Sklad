@@ -10,17 +10,6 @@ namespace Sklad.Controllers
 {
     public class ProductsController : Controller
     {
-        public IActionResult GetImage(int id)
-        {
-            var product = DataBase.get(id)[0];
-            if (product == null || product.image == null || product.image.Length == 0)
-            {
-                return NotFound();
-            }
-
-            return File(product.image, "image/png"); 
-        }
-
         public IActionResult New_Product(int id)
         {
             DataBase.current_id= id;

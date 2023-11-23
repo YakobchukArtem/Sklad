@@ -46,72 +46,86 @@
 
         <div class="product_block" data-id="@item.id">
             <div class="left_grid_info">
-                    <img width="200" src="~/product.png" style="margin: 10px 25px;">
-                    <br />  
-                    <strong>Name: </strong>
-                    <span class="pname">
-                        @item.name
-                    </span>
-                    <br />
-                    <strong>Price: </strong>
-                    <span class="pprice">
-                        @item.price
-                    </span>
-                    <br />
-                    <strong>Count: </strong>
-                    <span class="pcount">
-                        @item.count
-                    </span>
-                    <br />
-                    
-          
+                @if (item.image != null && item.image.Length > 0)
+                {
+                    <img width="200" src="data:image/png;base64,@Convert.ToBase64String(item.image)" alt="Product Image" style="margin: 10px 25px;">
+                }
+                else
+                {
+                    <img width="200" src="~/product.png" alt="Default Product Image" style="margin: 10px 25px;">
+                }
+                <br />
+                <strong>Name: </strong>
+                <span class="pname">
+                    @item.name
+                </span>
+                <br />
+                <strong>Price: </strong>
+                <span class="pprice">
+                    @item.price
+                </span>
+                <br />
+                <strong>Count: </strong>
+                <span class="pcount">
+                    @item.count
+                </span>
+                <br />
+
+
             </div>
 
 
 
-            <div class="bottom_grid_info" style="    display: flex;">
-                <a class="btn btn-primary btn-sm" data-id="@item.id" href="/Products/New_Product?id=@item.id"><i class="fas fa-pencil-alt"></i></a>
-                <a class="btn btn-danger btn-sm delete-btn2" data-id="@item.id" href="#"><i class="fas fa-trash-alt"></i></a>
-            </div>
+
 
 
 
 
             <div class="right_grid_info">
+                <div class="right_hide">
                     <strong>Category: </strong>
                     <span class="pcateg">
                         @item.category
                     </span>
-                <br />
+                    <br />
                     <strong>Measurement Unit: </strong>
                     <span class="pme">
                         @item.measurement_unit
                     </span>
-                <br />
+                    <br />
                     <strong>Price Unit: </strong>
                     <span class="ppru">
                         @item.price_unit
                     </span>
-                <br />
+                    <br />
                     <strong>Producer: </strong>
                     <span class="ppro">
                         @item.producer
                     </span>
-                <br />
+                    <br />
                     <strong>Supplier: </strong>
                     <span class="psup">
                         @item.supplier
                     </span>
-                <br />
+                    <br />
+                </div>
+
+                <div class="bottom_grid_info" style="    display: flex;">
+                    <a class="btn btn-primary btn-sm" data-id="@item.id" href="/Products/New_Product?id=@item.id"><i class="fas fa-pencil-alt"></i></a>
+                    <a class="btn btn-danger btn-sm delete-btn2" data-id="@item.id" href="#"><i class="fas fa-trash-alt"></i></a>
+                </div>
+
+
+
             </div>
 
 
-                    @{
-                        decimal price = Convert.ToDecimal(item.price);
-                        decimal count = Convert.ToDecimal(item.count);
-                    }
+            @{
+                decimal price = Convert.ToDecimal(item.price);
+                decimal count = Convert.ToDecimal(item.count);
+            }
 
-            
+
         </div>
     }
 
