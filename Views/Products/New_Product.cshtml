@@ -5,34 +5,45 @@
 @{
 }
 <form method="POST" action="/Products/Edit">
+
+
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Name</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control form__field" name="name" value="@(Model != null ? Model.name : "")" />
+            <input type="text" class="form-control form__field" name="name" value="@(Model != null ? Model.name : "")" required />
         </div>
     </div>
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Category</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control form__field" name="category" value="@(Model != null ? Model.category : "")" />
+            <select type="text" class="form-control form__field" name="category" value="@(Model != null ? Model.category : "")">
+                <option selected>Electronic</option>
+                <option>Item</option>
+                <option>Product</option>
+            </select>
         </div>
     </div>
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Producer</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control form__field" name="producer" value="@(Model != null ? Model.producer : "")" />
+            <select type="text" class="form-control form__field" name="producer" value="@(Model != null ? Model.producer : "")" />
+            <option selected>China</option>
+            <option>Ukraine</option>
+            <option>USA</option>
+            <option>Turcish</option>
+            </select>
         </div>
     </div>
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Price</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control form__field" name="price" value="@(Model != null ? Model.price : "")" />
+            <input type="text" class="form-control form__field" name="price" value="@(Model != null ? Model.price : "")" required />
         </div>
     </div>
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Count</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control form__field" name="count" value="@(Model != null ? Model.count : "")" />
+            <input type="text" class="form-control form__field" name="count" value="@(Model != null ? Model.count : "")" required />
         </div>
     </div>
     <div class="row mb-3">
@@ -44,13 +55,23 @@
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Measurement Unit</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control form__field" name="measurement_unit" value="@(Model != null ? Model.measurement_unit : "")" />
+            <select type="text" class="form-control form__field" name="measurement_unit" value="@(Model != null ? Model.measurement_unit : "")" required />
+            <option selected>unit</option>
+            <option>Kg</option>
+            <option>L</option>
+            <option>M²</option>
+            </select>
         </div>
     </div>
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Price Unit</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control form__field" name="price_unit" value="@(Model != null ? Model.price_unit : "")" />
+            <select type="text" class="form-control form__field" name="price_unit" value="@(Model != null ? Model.price_unit : "")" required />
+            <option selected>$</option>
+            <option>₴</option>
+            <option>¥</option>
+            <option>₤</option>
+            </select>
         </div>
     </div>
     <div class="row mb-3">

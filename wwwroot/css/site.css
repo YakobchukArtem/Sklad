@@ -228,7 +228,26 @@ a:hover {
 }
 
     .image-container img {
-        width: 100%; /* Картинка займе 100% ширини контейнера */
-        height: auto; /* Забезпечення пропорцій для висоти */
-        display: block; /* Вирівнювання картинки в середині блока */
+        width: 100%; 
+        height: auto; 
+        display: block; 
     }
+
+.form-control, 
+.form__field select {
+    background-color: #121212 !important;
+    color: white !important;
+}
+
+
+.form-control,
+.form__field select:focus{
+    background-color: #121212 !important;
+    color: white !important;
+}
+
+, .form-control,
+.form__field select:active {
+    background-color: #121212 !important;
+    color: white !important;
+}
