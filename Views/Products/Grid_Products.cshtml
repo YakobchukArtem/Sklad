@@ -38,11 +38,11 @@
 
 
 <div class="grid">
-   
 
 
-            @foreach (var item in Model)
-            {
+
+    @foreach (var item in Model)
+    {
 
         <div class="product_block" data-id="@item.id">
             <div class="left_grid_info">
@@ -84,7 +84,7 @@
 
 
 
-            
+
 
 
 
@@ -95,45 +95,45 @@
                     <span class="pcateg">
                         @item.category
                     </span>
-                <br />
+                    <br />
                     <strong>Measurement Unit: </strong>
                     <span class="pme">
                         @item.measurement_unit
                     </span>
-                <br />
+                    <br />
                     <strong>Price Unit: </strong>
                     <span class="ppru">
                         @item.price_unit
                     </span>
-                <br />
+                    <br />
                     <strong>Producer: </strong>
                     <span class="ppro">
                         @item.producer
                     </span>
-                <br />
+                    <br />
                     <strong>Supplier: </strong>
                     <span class="psup">
                         @item.supplier
                     </span>
-                <br />
+                    <br />
                 </div>
 
-                
+
 
 
 
             </div>
 
 
-                    @{
-                        decimal price = Convert.ToDecimal(item.price);
-                        decimal count = Convert.ToDecimal(item.count);
-                    }
+            @{
+                decimal price = Convert.ToDecimal(item.price);
+                decimal count = Convert.ToDecimal(item.count);
+            }
 
-            
+
         </div>
     }
-        
-       
- 
+
+
+
 </div>
