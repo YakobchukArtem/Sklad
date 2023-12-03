@@ -17,20 +17,22 @@
         <label class="col-sm-3 col-form-label">Category</label>
         <div class="col-sm-6">
             <select type="text" class="form-control form__field" name="category" value="@(Model != null ? Model.category : "")">
-                <option selected>Electronic</option>
-                <option>Item</option>
-                <option>Product</option>
+                @foreach (var category in ViewBag.Tables_data.categories)
+                {
+                    <option selected="@((Model != null && Model.category == category).ToString().ToLower())">@category</option>
+                }
             </select>
+
         </div>
     </div>
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Producer</label>
         <div class="col-sm-6">
             <select type="text" class="form-control form__field" name="producer" value="@(Model != null ? Model.producer : "")" />
-            <option selected>China</option>
-            <option>Ukraine</option>
-            <option>USA</option>
-            <option>Turcish</option>
+            @foreach (var producer in ViewBag.Tables_data.producers)
+            {
+                <option selected="@((Model != null && Model.producer == producer).ToString().ToLower())">@producer</option>
+            }
             </select>
         </div>
     </div>
@@ -49,7 +51,12 @@
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Supplier</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control form__field" name="supplier" value="@(Model.supplier != null ? Model.supplier : "")" />
+            <select type="text" class="form-control form__field" name="supplier" value="@(Model.supplier != null ? Model.supplier : "")" />
+            @foreach (var supplier in ViewBag.Tables_data.suppliers)
+            {
+                <option selected="@((Model != null && Model.supplier == supplier).ToString().ToLower())">@supplier</option>
+            }
+            </select>
         </div>
     </div>
     <div class="row mb-3">

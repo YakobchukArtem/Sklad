@@ -20,6 +20,13 @@ namespace Sklad.Controllers
                 DataBase.updateflag = true;
                 product = DataBase.get(id)[0];
             }
+            Tables_data tablesData = new Tables_data(
+               DataBase.get("categories"),
+               DataBase.get("producers"),
+               DataBase.get("suppliers")
+            );
+
+            ViewBag.Tables_data = tablesData;
             return View(product);
         }
         [HttpGet]
@@ -210,5 +217,43 @@ namespace Sklad.Controllers
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
+        public static List<String> get(string name)
+        {
+            string query = $"SELECT name FROM {name}";
+            List<String> list = new List<String>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string categoryName = reader.GetString(0);
+
+                            list.Add(categoryName);
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+        public static void Add(string tablename, string name)
+        {
+            string query = $"INSERT INTO {tablename} VALUES ('{name}')";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }
