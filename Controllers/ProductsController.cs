@@ -34,6 +34,8 @@ namespace Sklad.Controllers
         {
             return View("~/Views/Products/Products.cshtml", DataBase.get(0, parameter, desc));
         }
+
+
         [HttpGet]
         public IActionResult Grid_Products(string parameter = "id", string desc = null)
         {
