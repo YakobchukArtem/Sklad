@@ -20,18 +20,14 @@ namespace Sklad.Controllers
                 DataBase.updateflag = true;
                 product = DataBase.get(id)[0];
             }
-            Tables_data tablesData = new Tables_data(
-               DataBase.get("categories"),
-               DataBase.get("producers"),
-               DataBase.get("suppliers")
-            );
-
-            ViewBag.Tables_data = tablesData;
+            ViewBag.Tables_data = Tables_data_methods.get();
             return View(product);
         }
         [HttpGet]
         public IActionResult Products(string parameter="id", string desc = null)
         {
+            if(parameter!="id") DataBase.current_sort_parameter= parameter;
+            ViewBag.Tables_data = Tables_data_methods.get();
             return View("~/Views/Products/Products.cshtml", DataBase.get(0, parameter, desc));
         }
 
@@ -67,6 +63,7 @@ namespace Sklad.Controllers
         public static List<Product> listProducts = new List<Product>();
         private static readonly string connectionString;
         public static bool updateflag = false;
+        public static string current_sort_parameter { get; set; }
         public static int current_id { get; set; }
         static DataBase()
         {

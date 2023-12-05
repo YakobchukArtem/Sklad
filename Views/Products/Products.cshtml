@@ -26,6 +26,16 @@
                 <option value="Count2">Count ↓</option>
             </select>
         </div>
+        <div class="box">
+            <select id="categorySelect" name="category">
+                <option>Category</option>
+                @foreach (var category in ViewBag.Tables_data.categories)
+                {
+                    <option value="@category">@category</option>
+                }
+            </select>
+        </div>
+
 </div>
 </div>
 
