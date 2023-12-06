@@ -25,17 +25,23 @@ namespace Sklad.Controllers
             return View(product);
         }
         [HttpGet]
-        public IActionResult Products(string parameter="id", string desc = null)
+        public IActionResult Products(string parameter="ID", string desc = null)
         {
-            if(parameter!="id") DataBase.current_sort_parameter= parameter;
+            bool shouldChangeParameter = (parameter == "Price" || parameter == "Count");
+            string dynamicParameter = shouldChangeParameter ? $"{parameter}{(desc != null ? "1" : "2")}" : parameter;
+            DataBase.current_sort_parameter = dynamicParameter;
             ViewBag.Tables_data = Tables_data_methods.get();
             return View("~/Views/Products/Products.cshtml", DataBase.get(0, parameter, desc));
         }
 
 
         [HttpGet]
-        public IActionResult Grid_Products(string parameter = "id", string desc = null)
+        public IActionResult Grid_Products(string parameter = "ID", string desc = null)
         {
+            bool shouldChangeParameter = (parameter == "Price" || parameter == "Count");
+            string dynamicParameter = shouldChangeParameter ? $"{parameter}{(desc != null ? "1" : "2")}" : parameter;
+            DataBase.current_sort_parameter = dynamicParameter;
+            ViewBag.Tables_data = Tables_data_methods.get();
             return View("~/Views/Products/Grid_Products.cshtml", DataBase.get(0, parameter, desc));
         }
         [HttpPost]

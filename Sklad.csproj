@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="appsettings.secrets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EPPlus" Version="7.0.3" />
     <PackageReference Include="ExcelPackage" Version="1.0.0" />
     <PackageReference Include="itext7" Version="8.0.2" />
@@ -17,6 +21,10 @@
 
   <ItemGroup>
     <Folder Include="Report\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.secrets.json" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,11 @@
 ﻿$(document).ready(function () {
 
 
-
+    var currentSortCategory = $("#sortSelect").data("current-sort-category");
+    var currentSortCategory2 = $("#sortSelect2").data("current-sort-category");
+    $("#sortSelect").val(currentSortCategory);
+    $("#sortSelect2").val(currentSortCategory2);
+  
     $("#sortSelect").change(function () {
 
 
@@ -86,14 +90,10 @@ $("#sortSelect2").change(function () {
         });
     });
 
-    // Initialize the sort select element based on the current sort category
-    ////const currentSortCategory = ViewBag.Data_Tables.Current_sort_category;
-    ////const selectedOption = sortSelect.options.find(option => option.value === currentSortCategory);
-    ////if (selectedOption) {
-    ////    selectedOption.selected = true;
-    ////}
 
-    //ViewBag.Data_Tables.Current_sort_category - тут лежить стрінг назва категорії яка була вибрана
+    
+
+   
 
 
 
