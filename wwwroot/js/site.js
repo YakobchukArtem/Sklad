@@ -1,6 +1,29 @@
 ﻿$(document).ready(function () {
 
 
+    $("#downloadBtn").on("click", function () {
+       
+        $.ajax({
+            url: "/YourController/DownloadFile",
+            type: "GET",
+            success: function (data) {
+        
+                var blob = new Blob([data]);
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = "yourFileName.txt";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            },
+            error: function () {
+                console.log("Помилка завантаження файлу.");
+            }
+        });
+    });
+
+
+
     var currentSortCategory = $("#sortSelect").data("current-sort-category");
     var currentSortCategory2 = $("#sortSelect2").data("current-sort-category");
     $("#sortSelect").val(currentSortCategory);
