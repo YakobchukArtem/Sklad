@@ -75,12 +75,12 @@ namespace Sklad.Controllers
             Report.Print_Report_PDF(DataBase.get(0), filePath);
             return RedirectToAction("Products", DataBase.get(0));
         }
-        public ActionResult DownloadFile()
+        public FileResult DownloadFile()
         {
             string filePath = "Report/report.xlsx";
             Report.Print_Report_XLSX(DataBase.get(0), filePath);
             byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
-            return File(fileBytes, "application/octet-stream", "report.xlsx");
+            return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "report.xlsx");
         }
     }
 }
