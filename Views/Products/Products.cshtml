@@ -17,7 +17,7 @@
             <img width="90" src="~/icon.png">
         </a>
         <div class="box">
-            <select id="sortSelect" name="selection" data-selected-option="ID">
+            <select id="sortSelect" name="selection" data-current-sort-category="@ViewBag.Tables_data.current_sort_parameter">
                 <option value="ID">ID</option>
                 <option value="Name">Name</option>
                 <option value="Price1">Price ↑</option>
@@ -40,7 +40,7 @@
 </div>
 
 
-
+<div id="currentSortCategory" data-current-sort-category="@ViewBag.Tables_data.current_sort_parameter"></div>
 <div class="table2">
 <table class="table">
     <thead>

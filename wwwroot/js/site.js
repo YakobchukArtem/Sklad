@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
 
-
+    var currentSortCategory = $("#sortSelect").data("current-sort-category");
+    $("#sortSelect").val(currentSortCategory);
 
     $("#sortSelect").change(function () {
 

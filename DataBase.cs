@@ -50,7 +50,7 @@ namespace Sklad
                                 product.producer = reader.GetString(3);
                                 product.price = reader.GetDecimal(4);
                                 product.count = reader.GetInt32(5);
-                                product.supplier = reader.IsDBNull(6) ? null : reader.GetString(6);
+                                product.supplier = reader.GetString(6);
                                 product.measurement_unit = reader.GetString(7);
                                 product.price_unit = reader.GetString(8);
                                 if (!reader.IsDBNull(9))
@@ -185,7 +185,7 @@ namespace Sklad
             }
             return list;
         }
-        public static void Add(string tablename, string name)
+        public static void add(string tablename, string name)
         {
             string query = $"INSERT INTO {tablename} VALUES ('{name}')";
 
@@ -198,6 +198,20 @@ namespace Sklad
                     command.ExecuteNonQuery();
                 }
             }
+        }
+        public static List<Product> Sample(string category = null, string producer = null, string supplier = null)
+        {
+            List<Product> productList = get(0);
+            if (!string.IsNullOrEmpty(category))
+                productList = productList.Where(p => p.category == category).ToList();
+
+            if (!string.IsNullOrEmpty(producer))
+                productList = productList.Where(p => p.producer == producer).ToList();
+
+            if (!string.IsNullOrEmpty(supplier))
+                productList = productList.Where(p => p.supplier == supplier).ToList();
+
+            return productList;
         }
 
     }
