@@ -9,13 +9,18 @@
 
 
 <div class="topblock">
+    <div>
 <a class='btn btn-primary btn-sm' style="background-color:#0563af !important; padding: 10px;border-radius: 7px;     margin-top: 10px;" href="/Products/New_Product"><strong>Add new product</strong></a>
-
+        <a class='btn btn-primary btn-sm' style="background-color:#0563af !important; padding: 10px;border-radius: 7px;margin-left: 5px;     margin-top: 10px;"><strong>  <i class="fas fa-download"></i></strong></a>
+    </div>
+   
 
     <div class="topblock2">
         <a href="/Products/Grid_Products">
             <img width="90" src="~/icon.png">
         </a>
+   
+
         <div class="box">
             <select id="sortSelect" name="selection" data-current-sort-category="@ViewBag.Tables_data.current_sort_parameter">
                 <option value="ID">ID</option>
@@ -26,15 +31,7 @@
                 <option value="Count2">Count ↓</option>
             </select>
         </div>
-        <div class="box">
-            <select id="categorySelect" name="category">
-                <option>Category</option>
-                @foreach (var category in ViewBag.Tables_data.categories)
-                {
-                    <option value="@category">@category</option>
-                }
-            </select>
-        </div>
+      
 
 </div>
 </div>
