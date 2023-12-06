@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Reflection.Metadata;
 using System.Data.Common;
 using static iText.IO.Image.Jpeg2000ImageData;
+using System.IO;
 
 
 namespace Sklad.Controllers
@@ -67,18 +68,20 @@ namespace Sklad.Controllers
         {
             return RedirectToAction("Products", DataBase.Sample(category, producer, supplier));
         }
+
         public IActionResult Report_PDF()
         {
             string filePath = "Report/report.pdf";
             Report.Print_Report_PDF(DataBase.get(0), filePath);
             return RedirectToAction("Products", DataBase.get(0));
         }
-        public IActionResult Report_XLSX()
+        public ActionResult DownloadFile()
         {
             string filePath = "Report/report.xlsx";
             Report.Print_Report_XLSX(DataBase.get(0), filePath);
-            return RedirectToAction("Products", DataBase.get(0));
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+            return File(fileBytes, "application/octet-stream", "report.xlsx");
         }
     }
-
 }
+
