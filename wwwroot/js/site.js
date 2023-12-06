@@ -4,14 +4,14 @@
     $("#downloadBtn").on("click", function () {
        
         $.ajax({
-            url: "/YourController/DownloadFile",
+            url: "/Products/DownloadFile",
             type: "GET",
             success: function (data) {
         
                 var blob = new Blob([data]);
                 var link = document.createElement('a');
                 link.href = window.URL.createObjectURL(blob);
-                link.download = "yourFileName.txt";
+                link.download = "export.xlsx";
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
