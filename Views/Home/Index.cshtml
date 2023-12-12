@@ -28,7 +28,12 @@
 
 
 </style>
-
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
 <form style="width: 180px; margin: 0 auto !important;" method="POST" action="/Home/SignIn">
     <div style="text-align: left;">
         <br />
