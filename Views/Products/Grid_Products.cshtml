@@ -5,7 +5,7 @@
 @{
 }
 <br />
-<h2> List of Products</h2>
+<h2> Grid of Products</h2>
 
 
 
@@ -75,14 +75,20 @@
                     <span class="pcount">
                         @item.count
                     </span>
+                    <span class="pme">
+                        @item.measurement_unit
+                    </span>
                     <br />
                     <strong>Price: </strong>
                     <span class="pprice">
                         @item.price
                     </span>
+                    <span class="ppru">
+                        @item.price_unit
+                    </span>
                     <br />
                 
-                <div class="bottom_grid_info">
+                    <div class="bottom_grid_info" style="margin-top: 10px;">
                     <a class="btn btn-primary btn-sm" data-id="@item.id" href="/Products/New_Product?id=@item.id"><i class="fas fa-pencil-alt"></i></a>
                     <a class="btn btn-danger btn-sm delete-btn2" data-id="@item.id" href="#"><i class="fas fa-trash-alt"></i></a>
                 </div>
@@ -98,26 +104,19 @@
 
             <div class="right_grid_info">
                 <div class="right_hide">
-                    <strong>Category: </strong>
+                    
+                    <strong style="">Category: </strong>
                     <span class="pcateg">
                         @item.category
                     </span>
-                    <br />
-                    <strong>Measurement Unit: </strong>
-                    <span class="pme">
-                        @item.measurement_unit
-                    </span>
-                    <br />
-                    <strong>Price Unit: </strong>
-                    <span class="ppru">
-                        @item.price_unit
-                    </span>
+                    
                     <br />
                     <strong>Producer: </strong>
                     <span class="ppro">
                         @item.producer
                     </span>
                     <br />
+                    
                     <strong>Supplier: </strong>
                     <span class="psup">
                         @item.supplier

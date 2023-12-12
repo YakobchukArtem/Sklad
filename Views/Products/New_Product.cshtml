@@ -4,7 +4,7 @@
 @model Sklad.Models.Product
 @{
 }
-<form method="POST" action="/Products/Edit">
+<form style="width: 550px; margin: 0 auto; margin-left: 450px;" method="POST" action="/Products/Edit">
 
 
     <div class="row mb-3">
@@ -84,7 +84,7 @@
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Image</label>
         <div class="col-sm-6" style="    display: -webkit-inline-box;">
-            <input id="img1" type="file" class="form-control form__field" style="font-size:15px;padding-left: 25px;    width: 350px;" />
+            <input id="img1" type="file" class="form-control form__field" style="font-size:15px;padding-left: 10px;    width: 350px;    border: none !important;margin-top: 5px;margin-bottom: 20px;" />
             <a class="btn btn-danger btn-sm delete-btn2" id="deleteimg" href="#" style=" display:none;"><i class="fas fa-trash-alt"></i></a>
             <input id="img2" type="text" style="display:none;" class="form-control form__field" name="image" value="@(Model.image != null ? Convert.ToBase64String(Model.image) : "")" />
         </div>
