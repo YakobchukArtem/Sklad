@@ -1,19 +1,51 @@
 ﻿@{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Sign In";
 }
-<form style="margin-left:0 !important;" method="POST" action="/Home/SignIn">
-    <div class="text-center">
+
+<style>
+    .nav-link,
+    .text-dark{
+        display:none;
+    }
+
+    input {
+        background: transparent;
+        border: 0;
+        border-bottom: 2px solid white;
+        outline: 0;
+        background-color: #121212 !important;
+        color: white !important;
+    }
+    input:focus{
+        background-color: #121212 !important;
+        color: white !important;
+
+    }
+    input selected{
+        background-color: #121212 !important;
+        color: white !important;
+    }
+
+
+</style>
+
+<form style="width: 200px; margin: 0 auto !important;" method="POST" action="/Home/SignIn">
+    <div style="text-align: left;">
+        <br />
         <h1 class="display-4">Sign In</h1>
 
-        <br />
+        <br /><br />
+        <div style="margin-bottom:5px;">Login</div>
+        <input style="margin-bottom:5px;border: none;border-bottom: 2px solid white;" type="text" name="login" required>
 
-        <div>Login</div>
-        <input type="text" name="login"> <!-- Додано type та name -->
-
-        <div>Password</div>
-        <input type="password" name="password"> <!-- Додано type та name -->
+        <div style="margin-bottom:5px;">Password</div>
+        <input style="margin-bottom:5px;" type="password" name="password" required>
 
         <br /><br />
-        <button type="submit">Login</button> <!-- Додано type та кнопці -->
+        <button type="submit" style="padding: 7px 25px; background-color: #0957c9; color: white; border: none;">
+            <strong>Login</strong>
+        </button>
+
+
     </div>
 </form>
