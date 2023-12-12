@@ -18,9 +18,21 @@ namespace Sklad.Controllers
             return View();
         }
 
+
         public IActionResult Privacy()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult SignIn(UserSignInDto user_sign_in)
+        {
+            var user = DataBase.get_user(user_sign_in.login);
+            if (user_sign_in.password == user.Password)
+            {
+                return RedirectToAction("Products", "Products");
+            }
+            return Redirect("Index");
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

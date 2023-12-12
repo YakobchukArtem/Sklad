@@ -32,7 +32,11 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Products">Products List</a>
                         </li>
                     </ul>
-                    <div style="margin-right:10px;">User</div> <img width="30" src="~/user.png" />
+                    @if (ViewBag.UserName != null)
+                    {
+                        <div style="margin-right:10px;"></div>
+                    }
+                    <img width="30" src="~/user.png" />
                 </div>
             </div>
         </nav>

@@ -1,6 +1,7 @@
 ﻿using Sklad.Models;
 using System.Data.SqlClient;
 using System.Data;
+using Microsoft.Office.Interop.Excel;
 
 namespace Sklad
 {
@@ -213,6 +214,37 @@ namespace Sklad
 
             return productList;
         }
+        public static User get_user(string login)
+        {
+            User user = null;
+
+            string query = $"SELECT * FROM users WHERE login = '{login}'";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            user = new User
+                            {
+                                Login = reader["login"].ToString(),
+                                Password = reader["password"].ToString(),
+                                Name = reader["name"].ToString(),
+                                IsLoggedIn = true
+                            };
+                        }
+                    }
+                }
+            }
+
+            return user;
+        }
 
     }
+
 }
+
