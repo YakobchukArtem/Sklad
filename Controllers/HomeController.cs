@@ -27,11 +27,15 @@ namespace Sklad.Controllers
         public IActionResult SignIn(UserSignInDto user_sign_in)
         {
             var user = DataBase.get_user(user_sign_in.login);
-            if (user_sign_in.password == user.Password)
+            if (user!=null && user_sign_in.password == user.Password)
             {
                 return RedirectToAction("Products", "Products");
             }
-            return Redirect("Index");
+            else
+            {
+                TempData["ErrorMessage"] = "Неправильний логін або пароль";
+                return RedirectToAction("Index");
+            }
 
         }
 
