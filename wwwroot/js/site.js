@@ -2,12 +2,13 @@
 
 
     $("#downloadBtn").on("click", function () {
+       
         $.ajax({
             url: "/Products/DownloadFile",
             type: "GET",
-            responseType: 'arraybuffer',  // Додайте це для правильної обробки бінарних даних
             success: function (data) {
-                var blob = new Blob([new Uint8Array(data)]);
+                console.log(data)
+                var blob = new Blob([data]);
                 var link = document.createElement('a');
                 link.href = window.URL.createObjectURL(blob);
                 link.download = "report.xlsx";
