@@ -16,7 +16,7 @@
         background-color: #121212 !important;
         color: white !important;
     }
-    input:focus{
+    input selected:focus{
         background-color: #121212 !important;
         color: white !important;
 
@@ -28,26 +28,21 @@
 
 
 </style>
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger" role="alert">
-        @TempData["ErrorMessage"]
-    </div>
-}
-<form style="width: 200px; margin: 0 auto !important;" method="POST" action="/Home/SignIn">
+
+<form style="width: 180px; margin: 0 auto !important;" method="POST" action="/Home/SignIn">
     <div style="text-align: left;">
         <br />
-        <h1 class="display-4">Sign In</h1>
+        <h1 style="text-align:center !important;" class="display-4">Sign In</h1>
 
         <br /><br />
         <div style="margin-bottom:5px;">Login</div>
-        <input style="margin-bottom:5px;border: none;border-bottom: 2px solid white;" type="text" name="login" required>
+        <input style="margin-bottom:15px;border: none;border-bottom: 2px solid white;" type="text" name="login" required>
 
         <div style="margin-bottom:5px;">Password</div>
-        <input style="margin-bottom:5px;" type="password" name="password" required>
+        <input style="margin-bottom:20px;" type="password" name="password" required>
 
-        <br /><br />
-        <button type="submit" style="padding: 7px 25px; background-color: #0957c9; color: white; border: none;">
+        
+        <button type="submit" style="padding: 7px 25px; background-color: #0957c9; color: white; border: none; border-radius: 5px;">
             <strong>Login</strong>
         </button>
 
