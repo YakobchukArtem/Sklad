@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <None Include="appsettings.secrets.json" />
+    <None Include="wwwroot\user.png" />
   </ItemGroup>
 
 </Project>
