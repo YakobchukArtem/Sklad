@@ -11,4 +11,8 @@ namespace Sklad.Models
 
         public bool IsLoggedIn { get; set; }
     }
+    public class User_Name
+    {
+        public static string Name { get; set; }
+    }
 }

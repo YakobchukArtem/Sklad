@@ -30,9 +30,14 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Products">Products List</a>
                         </li>
                     </ul>
+                    @if (ViewBag.Name != null)
+                    {
+                        <span>@ViewBag.Name</span>
+                    }
                     <a href="/Home/Index">
                     <img width="30" src="~/user.png" />
                     </a>
+                    
                 </div>
             </div>
         </nav>

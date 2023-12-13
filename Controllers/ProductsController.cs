@@ -18,6 +18,7 @@ namespace Sklad.Controllers
     {
         public IActionResult New_Product(int id)
         {
+            ViewBag.Name = User_Name.Name;
             DataBase.current_id= id;
             Product product = new Product();
             if (id > 0)
@@ -35,6 +36,7 @@ namespace Sklad.Controllers
             string dynamicParameter = shouldChangeParameter ? $"{parameter}{(desc != null ? "1" : "2")}" : parameter;
             DataBase.current_sort_parameter = dynamicParameter;
             ViewBag.Tables_data = Tables_data_methods.get();
+            ViewBag.Name = User_Name.Name;
             return View("~/Views/Products/Products.cshtml", DataBase.get(0, parameter, desc));
         }
 
@@ -46,11 +48,13 @@ namespace Sklad.Controllers
             string dynamicParameter = shouldChangeParameter ? $"{parameter}{(desc != null ? "1" : "2")}" : parameter;
             DataBase.current_sort_parameter = dynamicParameter;
             ViewBag.Tables_data = Tables_data_methods.get();
+            ViewBag.Name = User_Name.Name;
             return View("~/Views/Products/Grid_Products.cshtml", DataBase.get(0, parameter, desc));
         }
         [HttpPost]
         public IActionResult Edit(Product model)
         {
+            ViewBag.Name = User_Name.Name;
             if (DataBase.updateflag)
             {
                 DataBase.update(DataBase.current_id, model);
