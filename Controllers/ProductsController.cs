@@ -18,76 +18,107 @@ namespace Sklad.Controllers
     {
         public IActionResult New_Product(int id)
         {
-            ViewBag.Name = User_Name.Name;
-            DataBase.current_id= id;
-            Product product = new Product();
-            if (id > 0)
+            if(User_Name.Name != null)
             {
-                DataBase.updateflag = true;
-                product = DataBase.get(id)[0];
+                ViewBag.Name = User_Name.Name;
+                DataBase.current_id = id;
+                Product product = new Product();
+                if (id > 0)
+                {
+                    DataBase.updateflag = true;
+                    product = DataBase.get(id)[0];
+                }
+                ViewBag.Tables_data = Tables_data_methods.get();
+                return View(product);
             }
-            ViewBag.Tables_data = Tables_data_methods.get();
-            return View(product);
+            else
+            {
+                return View("~/Views/Shared/Error.cshtml");
+            }
         }
         [HttpGet]
         public IActionResult Products(string parameter="ID", string desc = null)
         {
-            bool shouldChangeParameter = (parameter == "Price" || parameter == "Count");
-            string dynamicParameter = shouldChangeParameter ? $"{parameter}{(desc != null ? "1" : "2")}" : parameter;
-            DataBase.current_sort_parameter = dynamicParameter;
-            ViewBag.Tables_data = Tables_data_methods.get();
-            ViewBag.Name = User_Name.Name;
-            return View("~/Views/Products/Products.cshtml", DataBase.get(0, parameter, desc));
+            if (User_Name.Name != null)
+            {
+                bool shouldChangeParameter = (parameter == "Price" || parameter == "Count");
+                string dynamicParameter = shouldChangeParameter ? $"{parameter}{(desc != null ? "1" : "2")}" : parameter;
+                DataBase.current_sort_parameter = dynamicParameter;
+                ViewBag.Tables_data = Tables_data_methods.get();
+                ViewBag.Name = User_Name.Name;
+                return View("~/Views/Products/Products.cshtml", DataBase.get(0, parameter, desc));
+            }
+            else
+            {
+                return View("~/Views/Shared/Error.cshtml");
+            }
         }
 
 
         [HttpGet]
         public IActionResult Grid_Products(string parameter = "ID", string desc = null)
         {
-            bool shouldChangeParameter = (parameter == "Price" || parameter == "Count");
-            string dynamicParameter = shouldChangeParameter ? $"{parameter}{(desc != null ? "1" : "2")}" : parameter;
-            DataBase.current_sort_parameter = dynamicParameter;
-            ViewBag.Tables_data = Tables_data_methods.get();
-            ViewBag.Name = User_Name.Name;
-            return View("~/Views/Products/Grid_Products.cshtml", DataBase.get(0, parameter, desc));
+            if (User_Name.Name != null)
+            {
+                bool shouldChangeParameter = (parameter == "Price" || parameter == "Count");
+                string dynamicParameter = shouldChangeParameter ? $"{parameter}{(desc != null ? "1" : "2")}" : parameter;
+                DataBase.current_sort_parameter = dynamicParameter;
+                ViewBag.Tables_data = Tables_data_methods.get();
+                ViewBag.Name = User_Name.Name;
+                return View("~/Views/Products/Grid_Products.cshtml", DataBase.get(0, parameter, desc));
+            }
+            else
+            {
+                return View("~/Views/Shared/Error.cshtml");
+            }
         }
         [HttpPost]
         public IActionResult Edit(Product model)
         {
-            ViewBag.Name = User_Name.Name;
-            if (DataBase.updateflag)
+            if (User_Name.Name != null)
             {
-                DataBase.update(DataBase.current_id, model);
-                DataBase.updateflag = false;
+                ViewBag.Name = User_Name.Name;
+                if (DataBase.updateflag)
+                {
+                    DataBase.update(DataBase.current_id, model);
+                    DataBase.updateflag = false;
+                }
+                else
+                {
+                    DataBase.add(model);
+                }
+                return RedirectToAction("Products", DataBase.get(0));
             }
             else
             {
-                DataBase.add(model);
+                return View("~/Views/Shared/Error.cshtml");
             }
-            return RedirectToAction("Products", DataBase.get(0));
         }
         public IActionResult Delete(int id)
         {
-            DataBase.delete(id);
-            return Json(new { success = true });
-        }
-        public IActionResult Sample(string category = null, string producer = null, string supplier = null)
-        {
-            return RedirectToAction("Products", DataBase.Sample(category, producer, supplier));
-        }
-
-        public IActionResult Report_PDF()
-        {
-            string filePath = "Report/report.pdf";
-            Report.Print_Report_PDF(DataBase.get(0), filePath);
-            return RedirectToAction("Products", DataBase.get(0));
+            if (User_Name.Name != null)
+            {
+                DataBase.delete(id);
+                return Json(new { success = true });
+            }
+            else
+            {
+                return View("~/Views/Shared/Error.cshtml");
+            }
         }
         public ActionResult DownloadFile()
         {
-            var filePath = "Report/report.xlsx";
-            Report.Print_Report_XLSX(DataBase.get(0), filePath);
-            var fileBytes = System.IO.File.ReadAllBytes(filePath);
-            return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "report.xlsx");
+            if(User_Name.Name != null)
+            {
+                var filePath = "Report/report.xlsx";
+                Report.Print_Report_XLSX(DataBase.get(0), filePath);
+                var fileBytes = System.IO.File.ReadAllBytes(filePath);
+                return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "report.xlsx");
+            }
+            else
+            {
+                return View("~/Views/Shared/Error.cshtml");
+            }
         }
 
     }

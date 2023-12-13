@@ -29,7 +29,7 @@ namespace Sklad.Controllers
             var user = DataBase.get_user(user_sign_in.login);
             if (user!=null && user_sign_in.password == user.Password)
             {
-                User_Name.Name = user.Name;               
+                User_Name.Name = user.Name;
                 return RedirectToAction("Products", "Products");
             }
             else
